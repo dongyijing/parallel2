@@ -78,6 +78,9 @@ void vectorf(double *f, double a, double b){
         f[(i - 1)*(2*N - 1) + N/2 - i - 1] =  sqrt(a)*2.0*(sqrt(3.0)*1.0)/3.0*c;/**< on f=3*/
         f[(i - 1)*(2*N - 1) + 3*N/2 + i - 1] =  sqrt(a)*2.0*(sqrt(3.0)*1.0)/3.0*c;/**< on f=5*/
     }
+    f[(2*N - 1)*(N/2 - 1)] = f[(2*N - 1)*(N/2 - 1)] + sqrt(a)*c;
+    f[(2*N - 1)*(N/2 - 1) + 2*N - 1 -1] = f[(2*N - 1)*(N/2 - 1) + 2*N - 1 -1] + sqrt(a)*c;
+
     fp = fopen("/home/egg/pictures/f.txt","w");
     for (i = 0; i < (2*N - 1)*(N - 1); i++){
         if (fp != 0){
