@@ -46,7 +46,7 @@ void calculateJ(double *a,double *temp, int n,double b ,double c){
     /*Jacobi isolate*/
     temp[0] = 0;
     temp[1] = 0;
-    for (i = 2; i < 2*N-1; i++){
+    for (i = 2; i < 2*N - 1; i++){
         if (d[i][2] != 0){
             temp[i] = - (d[i][1]*a[i - 1] + d[i][3]*a[i + 1] + d[i][4]*a[i + 2*N - 1] - f[i])*(double)(1/d[i][2]);
         }
@@ -59,23 +59,23 @@ void calculateJ(double *a,double *temp, int n,double b ,double c){
         for (i = 0; i < 2*N - 1; i++){
             if(d[(2*N-1)*j + i][2] != 0){
                 temp[(2*N - 1)*j + i] = -(d[(2*N - 1)*j + i][1]*a[(2*N - 1)*j + i-1]
-                    + d[(2*N-1)*j + i][3] * a[(2*N-1)*j + i + 1]
-                    + d[(2*N-1)*j + i][4] * a[(2*N-1)*(j + 1) + i]
-                    + d[(2*N-1)*j + i][0] * a[(2*N-1)*(j - 1) + i]
-                    - f[(2*N-1)*j + i])*(double)(1/d[(2*N-1)*j + i][2]);
+                    + d[(2*N - 1)*j + i][3] * a[(2*N - 1)*j + i + 1]
+                    + d[(2*N - 1)*j + i][4] * a[(2*N - 1)*(j + 1) + i]
+                    + d[(2*N - 1)*j + i][0] * a[(2*N - 1)*(j - 1) + i]
+                    - f[(2*N - 1)*j + i])*(double)(1/d[(2*N - 1)*j + i][2]);
             }
             else{
-                temp[(2*N-1)*j + i] = 0;
+                temp[(2*N - 1)*j + i] = 0;
             }
         }
     }
-    /**< On the first block matrix*/
-    for (i = 0; i < 2*N-3; i++){
-        if (d[(2*N - 1)*(N-2) + i][2] != 0){
-            temp[(2*N-1)*(N-2) + i] =  -(d[(2*N - 1)*(N - 2) + i][1]*a[(2*N - 1)*(N - 2) + i - 1] 
+    /**< On the last block matrix*/
+    for (i = 0; i < 2*N - 3; i++){
+        if (d[(2*N - 1)*(N - 2) + i][2] != 0){
+            temp[(2*N - 1)*(N - 2) + i] =  -(d[(2*N - 1)*(N - 2) + i][1]*a[(2*N - 1)*(N - 2) + i - 1] 
                                    + d[(2*N - 1)*(N - 2) + i][3]*a[(2*N - 1)*(N - 2) + i + 1] 
                                    + d[(2*N - 1)*(N - 2) + i][0]*a[(2*N - 1)*(N - 3) + i] 
-                                   - f[(2*N - 1)*(N - 2) + i])*(double)(1/d[(2*N - 1)*(N-2) + i][2]);
+                                   - f[(2*N - 1)*(N - 2) + i])*(double)(1/d[(2*N - 1)*(N - 2) + i][2]);
         }
         else{
             temp[i] = 0;

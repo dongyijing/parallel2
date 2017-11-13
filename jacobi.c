@@ -37,10 +37,10 @@ void jacobi( int n, double E, double b, double c){
 		temp =(double *)malloc(sizeof(double)*n);
 		do{
 				calculateJ(a,temp,n,b,c);
-        for (i = 0; i < n; i++){
+        /*for (i = 0; i < n; i++){
             printf("temp[%d] = %f ",i,temp[i]);
         } 
-        printf("\n");
+        printf("\n");*/
 				k++;
 				swapU(temp,a,n);
 				maxE=fabs(temp[0]-a[0]);
