@@ -72,7 +72,48 @@ void calculateJ(double *a,double *temp, int n,double b ,double c){
     /**< On the first block matrix*/
     for (i = 0; i < 2*N-3; i++){
         if (d[(2*N - 1)*(N-2) + i][2] != 0){
-            temp[(2*N-1)*(N-2) + i] =  -(d[(2*N - 1)*(N - 2) + i][1]*a[i - 1] 
+            temp[(2*N-1)*(N-2) + i] =  -(d[(2*N - 1)*(N - 2) + i][1]*a[(2*N - 1)*(N - 2) + i - 1] 
+                                   + d[(2*N - 1)*(N - 2) + i][3]*a[(2*N - 1)*(N - 2) + i + 1] 
+                                   + d[(2*N - 1)*(N - 2) + i][0]*a[(2*N - 1)*(N - 3) + i] 
+                                   - f[(2*N - 1)*(N - 2) + i])*(double)(1/d[(2*N - 1)*(N-2) + i][2]);
+        }
+        else{
+            temp[i] = 0;
+        }
+    }
+    temp[2*N - 2] = 0;
+    temp[2*N - 3] = 0;
+    /******************/
+    /**< SOR isolate***/
+    /******************/
+   /** temp[0] = 0;
+    temp[1] = 0;
+    for (i = 2; i < 2*N-1; i++){
+        if (d[i][2] != 0){
+            temp[i] = (1 - w)*a[i]-w*(d[i][1]*a[i - 1] + d[i][3]*a[i + 1] + d[i][4]*a[i + 2*N - 1] - f[i])*(double)(1/d[i][2]);
+        }
+        else{
+            temp[i] = 0;
+        }
+    }
+
+    for (j = 1; j < N - 2; j++){
+        for (i = 0; i < 2*N - 1; i++){
+            if(d[(2*N-1)*j + i][2] != 0){
+                temp[(2*N - 1)*j + i] = (1 - w)*a[(2*N - 1)*j + i] - w*(d[(2*N - 1)*j + i][1]*a[(2*N - 1)*j + i-1]
+                    + d[(2*N-1)*j + i][3] * a[(2*N-1)*j + i + 1]
+                    + d[(2*N-1)*j + i][4] * a[(2*N-1)*(j + 1) + i]
+                    + d[(2*N-1)*j + i][0] * a[(2*N-1)*(j - 1) + i]
+                    - f[(2*N-1)*j + i])*(double)(1/d[(2*N-1)*j + i][2]);
+            }
+            else{
+                temp[(2*N-1)*j + i] = 0;
+            }
+        }
+    }
+    for (i = 0; i < 2*N-3; i++){
+        if (d[(2*N - 1)*(N-2) + i][2] != 0){
+            temp[(2*N-1)*(N-2) + i] = (1 - w)*a[(2*N - 1)*(N - 2) + i] -w*(d[(2*N - 1)*(N - 2) + i][1]*a[i - 1] 
                                    + d[(2*N - 1)*(N - 2) + i][3]*a[i + 1] 
                                    + d[(2*N - 1)*(N - 2) + i][0]*a[(2*N - 1)*(N - 3) + i] 
                                    - f[(2*N - 1)*(N - 2) + i])*(double)(1/d[(2*N - 1)*(N-2) + i][2]);
@@ -83,6 +124,7 @@ void calculateJ(double *a,double *temp, int n,double b ,double c){
     }
     temp[2*N - 2] = 0;
     temp[2*N - 3] = 0;
+   */ 
 
    return;
 }

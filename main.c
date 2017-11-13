@@ -17,7 +17,7 @@ int main(){
     a = 1/(delta_x*delta_x);
     b = 1/(delta_y*delta_y); 
 
-    E = 0.0001;
+    E = 0.01;
 
     jacobi(n, E, a, b);
 }
