@@ -50,11 +50,10 @@ void calculateJ(double *a,double *temp, int n,double b ,double c){
         if (d[i][2] != 0){
             temp[i] = - (d[i][1]*a[i - 1] + d[i][3]*a[i + 1] + d[i][4]*a[i + 2*N - 1] - f[i])*(double)(1/d[i][2]);
         }
-        else{
+        else {
             temp[i] = 0;
         }
     }
-
     for (j = 1; j < N - 2; j++){
         for (i = 0; i < 2*N - 1; i++){
             if(d[(2*N-1)*j + i][2] != 0){
